@@ -1,4 +1,9 @@
 {
+  "watchOptions": {
+    "watchFile": "priorityPollingInterval",
+    "watchDirectory": "dynamicprioritypolling",
+    "excludeDirectories": ["**/node_modules", "dist"]
+  },
   "compilerOptions": {
     "module": "commonjs",
     "declaration": true,

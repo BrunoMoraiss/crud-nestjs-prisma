@@ -15,12 +15,12 @@ export class AuthorService {
     if (authorExists) {
       throw new HttpException(
         { msg: 'Author já cadastrado', author: `${authorExists.name}` },
-        HttpStatus.BAD_REQUEST,
+        HttpStatus.NOT_FOUND,
       );
     }
 
     const author = await this.prisma.author.create({ data });
 
-    return author;
+    return { author };
   }
 }

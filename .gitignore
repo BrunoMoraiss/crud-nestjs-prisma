@@ -1,5 +1,5 @@
 # compiled output
-.docker/dbdata
+/dbdata
 /dist
 /node_modules
 

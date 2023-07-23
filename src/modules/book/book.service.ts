@@ -14,7 +14,7 @@ export class BookService {
     if (bookExists) {
       throw new HttpException(
         `Livro já cadastrado ${data.title.toLowerCase()}`,
-        HttpStatus.NOT_ACCEPTABLE,
+        HttpStatus.BAD_REQUEST,
       );
     }
 

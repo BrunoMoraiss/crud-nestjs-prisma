@@ -2,36 +2,24 @@ version: '3'
 
 services:
   app:
-    build: . 
-    entrypoint: .docker/entrypoint.sh
+    build: .
     container_name: testeDocker-api
     ports:
       - "3000:3000"
       - "5555:5555"
     volumes:
       - .:/home/node/app
+      - /home/node/app/node_modules
     depends_on:
       - db
 
   db:
-    build: .docker/postgres
+    image: postgres
     container_name: testeDocker-db
-    restart: always
-    tty: true
     ports:
       - "5432:5432"
     volumes:
-      - .docker/dbdata:/var/lib/postgresql/data
+      - ./dbdata:/var/lib/postgresql/data
     environment:
       - POSTGRES_PASSWORD=docker
       - POSTGRES_DB=jestprisma
-
-  pgadmin:
-    container_name: pgadmin4_container
-    image: dpage/pgadmin4
-    restart: always
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@admin.com
-      PGADMIN_DEFAULT_PASSWORD: root
-    ports:
-      - "5050:80"
