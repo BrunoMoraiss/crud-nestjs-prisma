@@ -1,4 +1,4 @@
-version: '3'
+version: "3.3"
 
 services:
   app:
@@ -11,7 +11,8 @@ services:
       - .:/home/node/app
       - /home/node/app/node_modules
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
   db:
     image: postgres
@@ -23,3 +24,8 @@ services:
     environment:
       - POSTGRES_PASSWORD=docker
       - POSTGRES_DB=jestprisma
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 10s
+      retries: 5
