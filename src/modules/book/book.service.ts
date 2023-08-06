@@ -24,17 +24,6 @@ export class BookService {
   }
 
   async findOne(id: string) {
-    const book: BookDTO = await this.prisma.book.findFirst({
-      where: {
-        id: Number(id),
-      },
-    });
-
-    if (!book) {
-      throw new HttpException('Livro não encontrado', HttpStatus.NOT_FOUND);
-    }
-
-    return book;
   }
 
   async findAll(): Promise<BookDTO[]> {
